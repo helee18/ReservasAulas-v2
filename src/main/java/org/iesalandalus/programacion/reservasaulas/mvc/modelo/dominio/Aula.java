@@ -62,11 +62,25 @@ public class Aula {
 		return puestos;
 	}
 
-	public void setPuestos(int puestos) {
+	private void setPuestos(int puestos) {
 		if (puestos < MIN_PUESTOS || puestos > MAX_PUESTOS)
 			throw new IllegalArgumentException("ERROR: El numero de puestos no es correcto.");
 		
 		this.puestos = puestos;
+	}
+	
+	public static Aula getAulaFicticia(String nombre) {
+		if (nombre == null)
+			throw new NullPointerException("ERROR: El nombre del aula no puede ser nulo.");
+		
+		if (nombre.trim().isEmpty())
+			throw new IllegalArgumentException("ERROR: El nombre del aula no puede estar vacío.");
+		
+		return new Aula(nombre, MIN_PUESTOS);
+	}
+	
+	public float getPuntos() {
+		return PUNTOS_POR_PUESTO*getPuestos();
 	}
 
 	@Override
