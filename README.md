@@ -1,6 +1,6 @@
 # Tarea Reservas de Aulas
 ## Profesor: Andrés Rubio del Río
-## Alumno:
+## Alumno: Helen Gutiérrez Ibáñez
 
 Desde el IES Al-Ándalus nos comentan que debemos tener en cuenta los siguientes aspectos:
 
