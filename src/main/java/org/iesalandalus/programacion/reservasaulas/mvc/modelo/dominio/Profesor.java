@@ -142,7 +142,7 @@ public class Profesor {
 		if (getTelefono() == null)
 			return "nombre=" + getNombre() + ", correo=" + getCorreo();
 		else
-			return "nombre=" + getNombre() + ", correo=" + getCorreo() + ", telefono=" + getTelefono() ;
+			return "nombre=" + getNombre() + ", correo=" + getCorreo() + ", teléfono=" + getTelefono() ;
 	}
 	
 	
