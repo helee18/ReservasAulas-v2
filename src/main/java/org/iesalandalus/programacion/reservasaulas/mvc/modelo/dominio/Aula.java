@@ -64,7 +64,7 @@ public class Aula {
 
 	private void setPuestos(int puestos) {
 		if (puestos < MIN_PUESTOS || puestos > MAX_PUESTOS)
-			throw new IllegalArgumentException("ERROR: El numero de puestos no es correcto.");
+			throw new IllegalArgumentException("ERROR: El número de puestos no es correcto.");
 		
 		this.puestos = puestos;
 	}
@@ -102,7 +102,7 @@ public class Aula {
 
 	@Override
 	public String toString() {
-		return "nombre Aula=" + getNombre();
+		return "nombre=" + getNombre() + ", puestos=" + getPuestos();
 	}
 	
 	
