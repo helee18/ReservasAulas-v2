@@ -13,6 +13,7 @@ public class Profesor {
 	public Profesor(String nombre, String correo) {
 		setNombre(nombre);
 		setCorreo(correo);
+		setTelefono(null);
 	}
 	
 	public Profesor(String nombre, String correo, String telefono) {
@@ -88,6 +89,20 @@ public class Profesor {
 			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
 		
 		this.correo = correo;
+	}
+	
+	public static Profesor getProfesorFicticio(String correo) {
+		if (correo == null)
+			throw new NullPointerException("ERROR: El correo del profesor no puede ser nulo.");
+		
+		if (correo.trim().isEmpty())
+			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
+		
+		if (!correo.matches(ER_CORREO) )
+			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
+		
+		String nombreFicticio = "Profesor Ficticio";
+		return new Profesor(nombreFicticio, correo);
 	}
 	
 	public String getTelefono() {
