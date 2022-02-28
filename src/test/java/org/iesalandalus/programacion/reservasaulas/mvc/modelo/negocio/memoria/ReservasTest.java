@@ -640,7 +640,7 @@ public class ReservasTest {
 			reservas.insertar(reserva1);
 			reservas.borrar(null);
 			fail(RESERVA_NULA);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_BORRAR_RESERVA_NULA));
 			assertThat(TAMANO_NO_ESPERADO, reservas.getNumReservas(), is(1));
 		} catch (Exception e) {
