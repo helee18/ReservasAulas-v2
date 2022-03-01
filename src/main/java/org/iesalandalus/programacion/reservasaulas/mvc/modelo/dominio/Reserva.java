@@ -45,10 +45,6 @@ public class Reserva {
 		if (permanencia == null)
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
 		
-		//no se pueden hacer reservas en el mes en curso (NO PASA LOS TESTS usan now())
-		//if (permanencia.getDia().getMonth().compareTo(LocalDate.now().getMonth()) <= 0)
-		//	throw new IllegalArgumentException("ERROR: No puede hacerse una reserva para el mes en curso.");
-		
 		if(permanencia instanceof PermanenciaPorTramo)
 			this.permanencia=new PermanenciaPorTramo(((PermanenciaPorTramo) permanencia).getDia(),((PermanenciaPorTramo) permanencia).getTramo());
 	    
