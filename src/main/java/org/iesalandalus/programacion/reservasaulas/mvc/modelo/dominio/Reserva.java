@@ -75,7 +75,7 @@ public class Reserva {
 	}
 	
 	public float getPuntos() {
-		return (float) aula.getPuntos()+permanencia.getPuntos();
+		return aula.getPuntos()+permanencia.getPuntos();
 	}
 
 	@Override
