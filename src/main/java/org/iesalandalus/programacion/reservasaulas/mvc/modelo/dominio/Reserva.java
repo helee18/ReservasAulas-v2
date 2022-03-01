@@ -1,16 +1,22 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Reserva {
+	private static final float MAX_PUNTOS_PROFESOR_MES=200;
 	private Permanencia permanencia;
 	private Aula aula;
 	private Profesor profesor;
 	
 	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia) {
-		setProfesor(profesor);
 		setAula(aula);
 		setPermanencia(permanencia);
+		
+		if (getPuntos() > MAX_PUNTOS_PROFESOR_MES)
+			throw new IllegalArgumentException("ERROR: El profesor no dispone de mas puntos para este mes.");
+		
+		setProfesor(profesor);
 	}
 	
 	public Reserva(Reserva reservaOriginal) {
@@ -38,6 +44,10 @@ public class Reserva {
 	private void setPermanencia(Permanencia permanencia) {
 		if (permanencia == null)
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
+		
+		//no se pueden hacer reservas en el mes en curso (NO PASA LOS TESTS usan now())
+		//if (permanencia.getDia().getMonth().compareTo(LocalDate.now().getMonth()) <= 0)
+		//	throw new IllegalArgumentException("ERROR: No puede hacerse una reserva para el mes en curso.");
 		
 		if(permanencia instanceof PermanenciaPorTramo)
 			this.permanencia=new PermanenciaPorTramo(((PermanenciaPorTramo) permanencia).getDia(),((PermanenciaPorTramo) permanencia).getTramo());
