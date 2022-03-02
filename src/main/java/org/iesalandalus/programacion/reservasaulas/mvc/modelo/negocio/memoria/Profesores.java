@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,7 +33,13 @@ public class Profesores implements IProfesores {
 	
 	@Override
 	public List<Profesor> getProfesores() {
-		return copiaProfundaProfesores(coleccionProfesores);
+		Comparator<Profesor> comparator = Comparator.comparing(Profesor::getCorreo);
+		
+		List<Profesor> copiaProfesores = copiaProfundaProfesores(coleccionProfesores);
+		
+		Collections.sort(copiaProfesores, comparator);
+		
+		return copiaProfesores;
 	}
 	
 	private List<Profesor> copiaProfundaProfesores(List<Profesor> coleccionProfesoresOriginal) {
