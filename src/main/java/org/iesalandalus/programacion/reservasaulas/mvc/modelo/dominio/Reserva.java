@@ -1,10 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Reserva {
-	private static final float MAX_PUNTOS_PROFESOR_MES=200;
 	private Permanencia permanencia;
 	private Aula aula;
 	private Profesor profesor;
@@ -12,9 +10,6 @@ public class Reserva {
 	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia) {
 		setAula(aula);
 		setPermanencia(permanencia);
-		
-		if (getPuntos() > MAX_PUNTOS_PROFESOR_MES)
-			throw new IllegalArgumentException("ERROR: El profesor no dispone de mas puntos para este mes.");
 		
 		setProfesor(profesor);
 	}
