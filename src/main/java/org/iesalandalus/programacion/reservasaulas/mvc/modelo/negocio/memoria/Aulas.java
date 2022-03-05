@@ -10,7 +10,9 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Aulas implements IAulas {
 	
@@ -25,9 +27,14 @@ public class Aulas implements IAulas {
 			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
 		
 		if (aulasOriginal.getNumAulas() == 0)
-			this.coleccionAulas = new ArrayList<Aula>();
+			coleccionAulas = new ArrayList<Aula>();
 		else 
-			this.coleccionAulas = copiaProfundaAulas(aulasOriginal.getAulas());
+			setAulas(aulasOriginal);
+	}
+	
+	private void setAulas(IAulas reservas) {
+
+		coleccionAulas = copiaProfundaAulas(reservas.getAulas());
 	}
 	
 	@Override
