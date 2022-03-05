@@ -9,10 +9,7 @@ import java.util.List;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Aulas implements IAulas {
 	
@@ -32,9 +29,9 @@ public class Aulas implements IAulas {
 			setAulas(aulasOriginal);
 	}
 	
-	private void setAulas(IAulas reservas) {
+	private void setAulas(IAulas aulas) {
 
-		coleccionAulas = copiaProfundaAulas(reservas.getAulas());
+		coleccionAulas = copiaProfundaAulas(aulas.getAulas());
 	}
 	
 	@Override
