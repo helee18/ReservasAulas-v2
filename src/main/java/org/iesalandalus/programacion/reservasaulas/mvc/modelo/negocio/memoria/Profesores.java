@@ -8,10 +8,10 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Profesores implements IProfesores {
 	
@@ -26,9 +26,14 @@ public class Profesores implements IProfesores {
 			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
 		
 		if (profesoresOriginal.getNumProfesores() == 0)
-			this.coleccionProfesores = new ArrayList<Profesor>();
+			coleccionProfesores = new ArrayList<Profesor>();
 		else 
-			this.coleccionProfesores = copiaProfundaProfesores(profesoresOriginal.getProfesores());
+			setProfesores(profesoresOriginal);
+	}
+	
+	private void setProfesores(IProfesores profesores) {
+
+		coleccionProfesores = copiaProfundaProfesores(profesores.getProfesores());
 	}
 	
 	@Override
