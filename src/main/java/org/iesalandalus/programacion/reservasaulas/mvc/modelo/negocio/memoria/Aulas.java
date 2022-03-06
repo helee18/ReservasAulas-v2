@@ -36,6 +36,9 @@ public class Aulas implements IAulas {
 	
 	@Override
 	public List<Aula> getAulas() {
+		if (getNumAulas() == 0)
+			throw new NullPointerException("ERROR: No se ha creado ningun aula aun.");
+		
 		Comparator<Aula> comparator = Comparator.comparing(Aula::getNombre);
 		
 		List<Aula> copiaAulas = copiaProfundaAulas(coleccionAulas);
@@ -90,11 +93,10 @@ public class Aulas implements IAulas {
 		if (aula == null) 
 			throw new NullPointerException("ERROR: No se puede borrar un aula nula.");
 		
-		if (buscar(aula) != null) 			
-			coleccionAulas.remove(aula);
-			
-		else
+		if (buscar(aula) == null) 			
 			throw new OperationNotSupportedException("ERROR: No existe ningún aula con ese nombre.");
+		
+		coleccionAulas.remove(aula);
 	}
 	
 	@Override
