@@ -13,8 +13,6 @@ public interface IModelo {
 
 	List<Aula> getAulas();
 
-	int getNumAulas();
-
 	List<String> representarAulas();
 
 	Aula buscarAula(Aula aula);
@@ -24,8 +22,6 @@ public interface IModelo {
 	void borrarAula(Aula aula) throws OperationNotSupportedException;
 
 	List<Profesor> getProfesores();
-
-	int getNumProfesores();
 
 	List<String> representarProfesores();
 
