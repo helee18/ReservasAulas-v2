@@ -1,21 +1,20 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
+import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
 public class Vista {
 	private static final String ERROR="ERROR", NOMBRE_VALIDO="Helena Gutierrez", CORREO_VALIDO="helena@gutierrez.com";
 	
-	private Controlador controlador;
+	private IControlador controlador;
 	
 	public Vista() {
 		Opcion.setVista(this);
 	}
 	
-	public void setControlador(Controlador controlador) {
+	public void setControlador(IControlador controlador) {
 		this.controlador = controlador;
 		
 		controlador.comenzar();
