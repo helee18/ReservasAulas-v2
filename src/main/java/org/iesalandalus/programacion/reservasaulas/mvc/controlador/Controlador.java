@@ -11,7 +11,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.Vista;
 
-public class Controlador {
+public class Controlador implements IControlador {
 	
 	private Modelo modelo;
 	private Vista vista;
@@ -27,14 +27,17 @@ public class Controlador {
 		this.vista.setControlador(this);
 	}
 	
+	@Override
 	public void comenzar() {
 		vista.comenzar();
 	}
 	
+	@Override
 	public void terminar() {
 		System.out.println("Fin del programa.");
 	}
 	
+	@Override
 	public void insertarAula(Aula aula) {
 		try {
 			modelo.insertarAula(aula);
@@ -44,6 +47,7 @@ public class Controlador {
 		}
 	}
 	
+	@Override
 	public void insertarProfesor(Profesor profesor) {
 		try {
 			modelo.insertarProfesor(profesor);
@@ -53,6 +57,7 @@ public class Controlador {
 		}
 	}
 	
+	@Override
 	public void borrarAula(Aula aula) {
 		try {
 			modelo.borrarAula(aula);
@@ -62,6 +67,7 @@ public class Controlador {
 		}
 	}
 	
+	@Override
 	public void borrarProfesor(Profesor profesor) {
 		try {
 			modelo.borrarProfesor(profesor);
@@ -71,6 +77,7 @@ public class Controlador {
 		}
 	}
 	
+	@Override
 	public Aula buscarAula(Aula aula) {
 		try {
 			modelo.buscarAula(aula);
@@ -81,6 +88,7 @@ public class Controlador {
 		return modelo.buscarAula(aula);
 	}
 	
+	@Override
 	public Profesor buscarProfesor(Profesor profesor) {
 		try {
 			modelo.buscarProfesor(profesor);
@@ -91,18 +99,22 @@ public class Controlador {
 		return modelo.buscarProfesor(profesor);
 	}
 	
+	@Override
 	public List<String> representarAulas() {
 		return modelo.representarAulas();
 	}
 	
+	@Override
 	public List<String> representarProfesores() {
 		return modelo.representarProfesores();
 	}
 	
+	@Override
 	public List<String> representarReservas() {
 		return modelo.representarReservas();
 	}
 	
+	@Override
 	public void realizarReserva(Reserva reserva) {
 		try {
 			modelo.realizarReserva(reserva);
@@ -111,6 +123,7 @@ public class Controlador {
 		}
 	}
 	
+	@Override
 	public void anularReserva(Reserva reserva) {
 		try {
 			modelo.anularReserva(reserva);
@@ -119,6 +132,7 @@ public class Controlador {
 		}
 	}
 	
+	@Override
 	public List<Reserva> getReservasAula(Aula aula) {
 		try {
 			modelo.getReservasAula(aula);
@@ -130,6 +144,7 @@ public class Controlador {
 		
 	}
 	
+	@Override
 	public List<Reserva> getReservasProfesor(Profesor profesor) {
 		try {
 			modelo.getReservasProfesor(profesor);
@@ -141,6 +156,7 @@ public class Controlador {
 		
 	}
 	
+	@Override
 	public List<Reserva> getReservasPremanencia(Permanencia permanencia) {
 		try {
 			modelo.getReservasPermanencia(permanencia);
@@ -151,6 +167,7 @@ public class Controlador {
 		return modelo.getReservasPermanencia(permanencia);
 	}
 	
+	@Override
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
 		try {
 			modelo.consultarDisponibilidad(aula, permanencia);
