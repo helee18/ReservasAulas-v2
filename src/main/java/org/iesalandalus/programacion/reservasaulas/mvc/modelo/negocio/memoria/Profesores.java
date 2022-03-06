@@ -36,6 +36,9 @@ public class Profesores implements IProfesores {
 	
 	@Override
 	public List<Profesor> getProfesores() {
+		if (getNumProfesores() == 0)
+			throw new NullPointerException("ERROR: No se ha creado ningun profesor aun.");
+		
 		Comparator<Profesor> comparator = Comparator.comparing(Profesor::getCorreo);
 		
 		List<Profesor> copiaProfesores = copiaProfundaProfesores(coleccionProfesores);
@@ -90,11 +93,10 @@ public class Profesores implements IProfesores {
 		if (profesor == null) 
 			throw new NullPointerException("ERROR: No se puede borrar un profesor nulo.");
 		
-		if (buscar(profesor) != null) 		
-			coleccionProfesores.remove(profesor);
-			
-		else
+		if (buscar(profesor) == null) 		
 			throw new OperationNotSupportedException("ERROR: No existe ningún profesor con ese correo.");
+		
+		coleccionProfesores.remove(profesor);
 	}
 	
 	@Override
