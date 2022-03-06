@@ -5,7 +5,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
-public class Vista {
+public class Vista implements IVista {
 	private static final String ERROR="ERROR", NOMBRE_VALIDO="Helena Gutierrez", CORREO_VALIDO="helena@gutierrez.com";
 	
 	private IControlador controlador;
@@ -14,12 +14,14 @@ public class Vista {
 		Opcion.setVista(this);
 	}
 	
+	@Override
 	public void setControlador(IControlador controlador) {
 		this.controlador = controlador;
 		
 		controlador.comenzar();
 	}
 	
+	@Override
 	public void comenzar()
 	{
 		int ordinalOpcion;
@@ -31,6 +33,7 @@ public class Vista {
 		} while (ordinalOpcion != Opcion.SALIR.ordinal());
 	}
 	
+	@Override
 	public void salir() {
 		controlador.terminar();
 		
