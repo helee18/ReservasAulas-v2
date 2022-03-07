@@ -52,7 +52,7 @@ public class Aulas implements IAulas {
 		
 		List<Aula> coleccionCopiaAulas;
 		
-		coleccionCopiaAulas = new ArrayList<Aula>(getNumAulas());
+		coleccionCopiaAulas = new ArrayList<Aula>();
 		
 		// recorremos todas las aulas comparando
 		Iterator<Aula> it = coleccionAulasOriginal.iterator();
@@ -100,11 +100,11 @@ public class Aulas implements IAulas {
 	}
 	
 	@Override
-	public List<String> representar() {
+	public List<String> representar() throws OperationNotSupportedException {
 		if (getNumAulas() == 0)
-			throw new IllegalArgumentException("ERROR: La lista de aulas está vacia.");
+			throw new OperationNotSupportedException("ERROR: La lista de aulas está vacia.");
 		
-		List<String> representacion = new ArrayList<String>(getNumAulas());
+		List<String> representacion = new ArrayList<String>();
 		
 		for (Aula a : coleccionAulas)
 			representacion.add(a.toString());			

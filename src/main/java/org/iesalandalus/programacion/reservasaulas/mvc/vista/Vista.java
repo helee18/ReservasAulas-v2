@@ -44,9 +44,8 @@ public class Vista implements IVista {
 	public void insertarAula() {
 		Aula aula;
 		
-		aula = Consola.leerAula();
-		
 		try {
+			aula = Consola.leerAula();
 			controlador.insertarAula(aula);
 			System.out.println("Se ha insertado el aula.");
 		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
@@ -58,9 +57,8 @@ public class Vista implements IVista {
 	public void borrarAula() {
 		Aula aula;
 		
-		aula = Consola.leerAula();
-		
 		try {
+			aula = Consola.leerAula();
 			controlador.borrarAula(aula);
 			System.out.println("Se ha elimiado el aula.");
 		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
@@ -72,10 +70,13 @@ public class Vista implements IVista {
 	public void buscarAula() {
 		Aula aula;
 		
-		aula = Consola.leerAula();
-				
 		try {
-			System.out.println(controlador.buscarAula(aula));
+			aula = Consola.leerAula();
+			
+			if (controlador.buscarAula(aula) == null)
+				System.out.println("No existe.");
+			else
+				System.out.println(controlador.buscarAula(aula));
 		} catch (NullPointerException | IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
@@ -85,7 +86,7 @@ public class Vista implements IVista {
 	public void listarAulas() {
 		try {
 			System.out.println(controlador.representarAulas());
-		} catch (OperationNotSupportedException e) {
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
 		
@@ -94,9 +95,8 @@ public class Vista implements IVista {
 	public void insertarProfesor() {
 		Profesor profesor;
 		
-		profesor = Consola.leerProfesor();
-		
 		try {
+			profesor = Consola.leerProfesor();
 			controlador.insertarProfesor(profesor);
 			System.out.println("Se ha insertado el profesor.");
 		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
@@ -108,9 +108,8 @@ public class Vista implements IVista {
 	public void borrarProfesor() {
 		Profesor profesor;
 		
-		profesor = Consola.leerProfesor();
-		
 		try {
+			profesor = Consola.leerProfesor();
 			controlador.borrarProfesor(profesor);
 			System.out.println("Se ha elimiado el profesor.");
 		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
@@ -121,10 +120,12 @@ public class Vista implements IVista {
 	public void buscarProfesor() {
 		Profesor profesor;
 	
-		profesor = Consola.leerProfesor();
-		
 		try {
-			System.out.println(controlador.buscarProfesor(profesor));
+			profesor = Consola.leerProfesor();
+			if (controlador.buscarProfesor(profesor) == null)
+				System.out.println("No existe.");
+			else
+				System.out.println(controlador.buscarProfesor(profesor));
 		} catch (NullPointerException | IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
@@ -137,15 +138,15 @@ public class Vista implements IVista {
 		
 		try {
 			System.out.println(controlador.representarProfesores());
-		} catch (OperationNotSupportedException e) {
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 	
 	public void realizarReserva(){
-		Reserva reserva = Consola.leerReserva();
 		
 		try {
+			Reserva reserva = Consola.leerReserva();
 			if (controlador.buscarAula(reserva.getAula()) == null)
 				System.out.println("ERROR: No se puede realizar una reserva si el aula aun no existe.");
 			else if (controlador.buscarProfesor(reserva.getProfesor()) == null)
@@ -203,14 +204,14 @@ public class Vista implements IVista {
 	public void consultarDisponibilidad() {
 		Aula aula;
 		
-		aula = Consola.leerAula();
-		
 		try {
-			if (controlador.buscarAula(aula) != null) { 
-				System.out.println("ERROR: No se puede realizar una reserva si el aula un no existe.");
-			} else {
-				controlador.consultarDisponibilidad(aula, Consola.leerPermanencia());
-			}
+			aula = Consola.leerAula();
+			boolean disponible = controlador.consultarDisponibilidad(aula, Consola.leerPermanencia());
+			
+			if (disponible == true)
+				System.out.println("Sí está disponible.");
+			else 
+				System.out.println("No está disponible.");
 		} catch (NullPointerException | IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}

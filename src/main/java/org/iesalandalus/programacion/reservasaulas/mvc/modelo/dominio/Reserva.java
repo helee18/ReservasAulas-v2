@@ -98,7 +98,7 @@ public class Reserva {
 
 	@Override
 	public String toString() {
-		return getProfesor() + ", " + getAula() + ", " + getPermanencia() + ", puntos=" + getPuntos();
+		return getProfesor() + ", " + getAula() + ", " + getPermanencia() + ", puntos=" + Float.toString(getPuntos()).replace('.', ',');
 	}
 	
 	

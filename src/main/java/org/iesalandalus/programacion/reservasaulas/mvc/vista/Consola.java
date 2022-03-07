@@ -69,9 +69,14 @@ private static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern
 	
 	public static int leerNumeroPuestos() {
 
-		System.out.println("Introduce el numero de puestos del aula: ");
+		int opcion = 0;
 		
-		return Entrada.entero();
+		do {
+			System.out.println("Introduce el numero de puestos del aula: ");
+			opcion = Entrada.entero();
+		} while (opcion < 10 || opcion > 100);
+		
+		return opcion;
 		
 	}
 	

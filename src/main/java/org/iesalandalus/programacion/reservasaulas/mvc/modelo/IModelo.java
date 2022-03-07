@@ -13,7 +13,7 @@ public interface IModelo {
 
 	List<Aula> getAulas();
 
-	List<String> representarAulas();
+	List<String> representarAulas() throws OperationNotSupportedException;
 
 	Aula buscarAula(Aula aula);
 
@@ -23,7 +23,7 @@ public interface IModelo {
 
 	List<Profesor> getProfesores();
 
-	List<String> representarProfesores();
+	List<String> representarProfesores() throws OperationNotSupportedException;
 
 	Profesor buscarProfesor(Profesor profesor);
 
@@ -35,7 +35,7 @@ public interface IModelo {
 
 	int getNumReservas();
 
-	List<String> representarReservas();
+	List<String> representarReservas() throws OperationNotSupportedException;
 
 	Reserva buscarReserva(Reserva reserva);
 

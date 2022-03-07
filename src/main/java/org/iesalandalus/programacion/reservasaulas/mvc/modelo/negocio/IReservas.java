@@ -19,7 +19,7 @@ public interface IReservas {
 
 	void borrar(Reserva reserva) throws OperationNotSupportedException;
 
-	List<String> representar();
+	List<String> representar() throws OperationNotSupportedException;
 
 	int getNumReservas();
 

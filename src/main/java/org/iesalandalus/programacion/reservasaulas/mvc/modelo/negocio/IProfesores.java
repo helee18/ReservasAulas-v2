@@ -16,7 +16,7 @@ public interface IProfesores {
 
 	void borrar(Profesor profesor) throws OperationNotSupportedException;
 
-	List<String> representar();
+	List<String> representar() throws OperationNotSupportedException;
 
 	int getNumProfesores();
 

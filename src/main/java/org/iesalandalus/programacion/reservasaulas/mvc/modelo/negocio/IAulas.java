@@ -16,7 +16,7 @@ public interface IAulas {
 
 	void borrar(Aula aula) throws OperationNotSupportedException;
 
-	List<String> representar();
+	List<String> representar() throws OperationNotSupportedException;
 
 	int getNumAulas();
 

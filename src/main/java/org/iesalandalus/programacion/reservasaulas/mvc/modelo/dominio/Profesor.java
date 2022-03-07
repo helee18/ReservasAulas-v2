@@ -85,7 +85,7 @@ public class Profesor {
 		if (correo.trim().isEmpty())
 			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
 		
-		if (!correo.matches(ER_CORREO) )
+		if (!correo.matches(ER_CORREO))
 			throw new IllegalArgumentException("ERROR: El correo del profesor no es válido.");
 		
 		this.correo = correo;

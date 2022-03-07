@@ -39,7 +39,7 @@ public class Modelo implements IModelo {
 	}
 	
 	@Override
-	public List<String> representarAulas() {
+	public List<String> representarAulas() throws OperationNotSupportedException {
 		return aulas.representar();
 	}
 	
@@ -70,7 +70,7 @@ public class Modelo implements IModelo {
 	}
 	
 	@Override
-	public List<String> representarProfesores() {
+	public List<String> representarProfesores() throws OperationNotSupportedException {
 		return profesores.representar();
 	}
 	
@@ -102,7 +102,7 @@ public class Modelo implements IModelo {
 	}
 	
 	@Override
-	public List<String> representarReservas() {
+	public List<String> representarReservas() throws OperationNotSupportedException {
 		return reservas.representar();
 	}
 	
@@ -138,6 +138,9 @@ public class Modelo implements IModelo {
 	
 	@Override
 	public boolean consultarDisponibilidad (Aula aula, Permanencia permanencia) {
+		if (buscarAula(aula) ==  null)
+			throw new IllegalArgumentException("ERROR: No se puede consultar la disponibilidad de un aula que no existe.");
+		
 		return reservas.consultarDisponibilidad(aula, permanencia);
 	}
 	

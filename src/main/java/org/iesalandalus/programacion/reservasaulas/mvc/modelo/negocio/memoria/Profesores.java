@@ -100,9 +100,9 @@ public class Profesores implements IProfesores {
 	}
 	
 	@Override
-	public List<String> representar() {
+	public List<String> representar() throws OperationNotSupportedException {
 		if (getNumProfesores() == 0)
-			throw new IllegalArgumentException("ERROR: La lista de profesores está vacia.");
+			throw new OperationNotSupportedException("ERROR: La lista de profesores está vacia.");
 		
 		List<String> representacion = new ArrayList<String>();
 		
