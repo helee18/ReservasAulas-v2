@@ -2,6 +2,8 @@ package org.iesalandalus.programacion.reservasaulas.mvc.controlador;
 
 import java.util.List;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
@@ -13,27 +15,27 @@ public interface IControlador {
 
 	void terminar();
 
-	void insertarAula(Aula aula);
+	void insertarAula(Aula aula)  throws OperationNotSupportedException ;
 
-	void insertarProfesor(Profesor profesor);
+	void insertarProfesor(Profesor profesor) throws OperationNotSupportedException ;
 
-	void borrarAula(Aula aula);
+	void borrarAula(Aula aula) throws OperationNotSupportedException;
 
-	void borrarProfesor(Profesor profesor);
+	void borrarProfesor(Profesor profesor) throws OperationNotSupportedException;
 
 	Aula buscarAula(Aula aula);
 
 	Profesor buscarProfesor(Profesor profesor);
 
-	List<String> representarAulas();
+	List<String> representarAulas() throws OperationNotSupportedException;
 
-	List<String> representarProfesores();
+	List<String> representarProfesores() throws OperationNotSupportedException;
 
-	List<String> representarReservas();
+	List<String> representarReservas() throws OperationNotSupportedException;
 
-	void realizarReserva(Reserva reserva);
+	void realizarReserva(Reserva reserva) throws OperationNotSupportedException;
 
-	void anularReserva(Reserva reserva);
+	void anularReserva(Reserva reserva) throws OperationNotSupportedException;
 
 	List<Reserva> getReservasAula(Aula aula);
 

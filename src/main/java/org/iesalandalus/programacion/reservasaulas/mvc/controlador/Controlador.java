@@ -5,7 +5,6 @@ import java.util.List;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.IModelo;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.Modelo;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
@@ -39,120 +38,68 @@ public class Controlador implements IControlador {
 	}
 	
 	@Override
-	public void insertarAula(Aula aula) {
-		try {
-			modelo.insertarAula(aula);
-			System.out.println("Se ha insertado el aula.");
-		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void insertarAula(Aula aula) throws OperationNotSupportedException {
+		modelo.insertarAula(aula);
 	}
 	
 	@Override
-	public void insertarProfesor(Profesor profesor) {
-		try {
-			modelo.insertarProfesor(profesor);
-			System.out.println("Se ha insertado el profesor.");
-		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void insertarProfesor(Profesor profesor) throws OperationNotSupportedException {
+		modelo.insertarProfesor(profesor);
 	}
 	
 	@Override
-	public void borrarAula(Aula aula) {
-		try {
-			modelo.borrarAula(aula);
-			System.out.println("Se ha elimiado el aula.");
-		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void borrarAula(Aula aula) throws OperationNotSupportedException {
+		modelo.borrarAula(aula);
 	}
 	
 	@Override
-	public void borrarProfesor(Profesor profesor) {
-		try {
-			modelo.borrarProfesor(profesor);
-			System.out.println("Se ha elimiado el profesor.");
-		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void borrarProfesor(Profesor profesor) throws OperationNotSupportedException {
+		modelo.borrarProfesor(profesor);
 	}
 	
 	@Override
 	public Aula buscarAula(Aula aula) {
-		try {
-			modelo.buscarAula(aula);
-		} catch (NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-		
 		return modelo.buscarAula(aula);
 	}
 	
 	@Override
 	public Profesor buscarProfesor(Profesor profesor) {
-		try {
-			modelo.buscarProfesor(profesor);
-		} catch (NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-		
 		return modelo.buscarProfesor(profesor);
 	}
 	
 	@Override
-	public List<String> representarAulas() {
+	public List<String> representarAulas() throws OperationNotSupportedException {
 		return modelo.representarAulas();
 	}
 	
 	@Override
-	public List<String> representarProfesores() {
+	public List<String> representarProfesores() throws OperationNotSupportedException {
 		return modelo.representarProfesores();
 	}
 	
 	@Override
-	public List<String> representarReservas() {
+	public List<String> representarReservas() throws OperationNotSupportedException {
 		return modelo.representarReservas();
 	}
 	
 	@Override
-	public void realizarReserva(Reserva reserva) {
-		try {
-			modelo.realizarReserva(reserva);
-		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void realizarReserva(Reserva reserva) throws OperationNotSupportedException {
+		modelo.realizarReserva(reserva);
 	}
 	
 	@Override
-	public void anularReserva(Reserva reserva) {
-		try {
-			modelo.anularReserva(reserva);
-		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
+	public void anularReserva(Reserva reserva) throws OperationNotSupportedException {
+		modelo.anularReserva(reserva);
 	}
 	
 	@Override
 	public List<Reserva> getReservasAula(Aula aula) {
-		try {
-			modelo.getReservasAula(aula);
-		} catch (NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-		
 		return modelo.getReservasAula(aula);
 		
 	}
 	
 	@Override
 	public List<Reserva> getReservasProfesor(Profesor profesor) {
-		try {
-			modelo.getReservasProfesor(profesor);
-		} catch (NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-		
 		return modelo.getReservasProfesor(profesor);
 		
 	}
@@ -170,12 +117,6 @@ public class Controlador implements IControlador {
 	
 	@Override
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
-		try {
-			modelo.consultarDisponibilidad(aula, permanencia);
-		} catch (NullPointerException | IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-		
 		return modelo.consultarDisponibilidad(aula, permanencia);
 		
 	}

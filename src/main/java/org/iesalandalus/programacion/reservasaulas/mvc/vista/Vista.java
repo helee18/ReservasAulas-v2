@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
@@ -44,7 +46,12 @@ public class Vista implements IVista {
 		
 		aula = Consola.leerAula();
 		
-		controlador.insertarAula(aula);
+		try {
+			controlador.insertarAula(aula);
+			System.out.println("Se ha insertado el aula.");
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -53,7 +60,12 @@ public class Vista implements IVista {
 		
 		aula = Consola.leerAula();
 		
-		controlador.borrarAula(aula);
+		try {
+			controlador.borrarAula(aula);
+			System.out.println("Se ha elimiado el aula.");
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -62,13 +74,20 @@ public class Vista implements IVista {
 		
 		aula = Consola.leerAula();
 				
-		controlador.buscarAula(aula);
+		try {
+			System.out.println(controlador.buscarAula(aula));
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
 	public void listarAulas() {
-		
-		controlador.representarAulas();
+		try {
+			System.out.println(controlador.representarAulas());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -77,7 +96,12 @@ public class Vista implements IVista {
 		
 		profesor = Consola.leerProfesor();
 		
-		controlador.insertarProfesor(profesor);
+		try {
+			controlador.insertarProfesor(profesor);
+			System.out.println("Se ha insertado el profesor.");
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -86,7 +110,12 @@ public class Vista implements IVista {
 		
 		profesor = Consola.leerProfesor();
 		
-		controlador.borrarProfesor(profesor);
+		try {
+			controlador.borrarProfesor(profesor);
+			System.out.println("Se ha elimiado el profesor.");
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void buscarProfesor() {
@@ -94,44 +123,80 @@ public class Vista implements IVista {
 	
 		profesor = Consola.leerProfesor();
 		
-		controlador.buscarProfesor(profesor);
+		try {
+			System.out.println(controlador.buscarProfesor(profesor));
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 		
 	}
 	
 	public void listarProfesores() {
 		
-		controlador.representarProfesores();
+		try {
+			System.out.println(controlador.representarProfesores());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
-	public void realizarReserva() {
+	public void realizarReserva(){
 		Reserva reserva = Consola.leerReserva();
 		
-		if (controlador.buscarAula(reserva.getAula()) == null) { 
-			throw new IllegalArgumentException("ERROR: No se puede realizar una reserva si el aula aun no existe.");
-		} else if (controlador.buscarProfesor(reserva.getProfesor()) == null) {
-			throw new IllegalArgumentException("ERROR: No se puede realizar una reserva si el profesor aun no existe.");
-		} else {
-			controlador.realizarReserva(reserva);
+		try {
+			if (controlador.buscarAula(reserva.getAula()) == null)
+				System.out.println("ERROR: No se puede realizar una reserva si el aula aun no existe.");
+			else if (controlador.buscarProfesor(reserva.getProfesor()) == null)
+				System.out.println("ERROR: No se puede realizar una reserva si el profesor aun no existe.");
+			else {
+				controlador.realizarReserva(reserva);
+				System.out.println("Se ha realizado al reserva");}
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
-		
 	}
+	
 	public void anularReserva() {
 		
-		controlador.anularReserva(Consola.leerReservaFicticia());
-		
+		try {
+			controlador.anularReserva(Consola.leerReservaFicticia());
+			System.out.println("Se ha anulado la reserva.");
+		} catch (OperationNotSupportedException | NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void listarReservas() {
-		controlador.representarReservas();
+		try {
+			System.out.println(controlador.representarReservas());
+		} catch (OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
 	public void listarReservasAula() {
-		controlador.getReservasAula(Consola.leerAula());
+		
+		try {
+			System.out.println(controlador.getReservasAula(Consola.leerAula()));
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 	}
 	
 	public void listarReservasProfesor() {
-		controlador.getReservasProfesor(Consola.leerProfesor());
+		
+		try {
+			System.out.println(controlador.getReservasProfesor(Consola.leerProfesor()));
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 		
 	}
 	
@@ -140,10 +205,14 @@ public class Vista implements IVista {
 		
 		aula = Consola.leerAula();
 		
-		if (controlador.buscarAula(aula) != null) { 
-			throw new IllegalArgumentException("ERROR: No se puede realizar una reserva si el aula un no existe.");
-		} else {
-			controlador.consultarDisponibilidad(aula, Consola.leerPermanencia());
+		try {
+			if (controlador.buscarAula(aula) != null) { 
+				System.out.println("ERROR: No se puede realizar una reserva si el aula un no existe.");
+			} else {
+				controlador.consultarDisponibilidad(aula, Consola.leerPermanencia());
+			}
+		} catch (NullPointerException | IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
 		
 		
