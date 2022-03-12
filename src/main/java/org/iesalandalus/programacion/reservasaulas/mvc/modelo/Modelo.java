@@ -8,12 +8,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria.Aulas;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria.Profesores;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria.Reservas;
 
 public class Modelo implements IModelo {
 	
@@ -21,10 +18,13 @@ public class Modelo implements IModelo {
 	private IAulas aulas;
 	private IReservas reservas;
 	
-	public Modelo() {
-		profesores = new Profesores();
-		aulas = new Aulas();
-		reservas = new Reservas();		
+	public Modelo(IFuenteDatos fuente) {
+		if (fuente == null)
+			throw new NullPointerException("ERROR: La fuente de datos es nula.");
+		
+		profesores = fuente.crearProfesores();
+		aulas = fuente.crearAulas();
+		reservas = fuente.crearReservas();		
 	}
 	
 	// Metodos clase aulas
