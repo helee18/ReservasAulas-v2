@@ -13,7 +13,6 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Reservas implements IReservas {
@@ -37,6 +36,8 @@ public class Reservas implements IReservas {
 	}
 	
 	private void setReservas(IReservas reservas) {
+		if (reservas == null)
+			throw new NullPointerException("ERROR: No existen reservas.");
 
 		coleccionReservas = copiaProfundaReservas(reservas.getReservas());
 	}
@@ -118,7 +119,7 @@ public class Reservas implements IReservas {
 		
 		Reserva aulaDia = getReservaAulaDia(reserva.getAula(), reserva.getPermanencia().getDia());
 		if (aulaDia != null) {
-			if (aulaDia.getPermanencia().getPuntos() != reserva.getPermanencia().getPuntos()) {
+			if (aulaDia.getPermanencia() == reserva.getPermanencia()) {
 				throw new OperationNotSupportedException(
 						"ERROR: Ya se ha realizado una reserva de otro tipo de permanencia para este día.");
 			}
@@ -194,8 +195,9 @@ public class Reservas implements IReservas {
 	private boolean esMesSiguienteOPosterior(Reserva reserva) {
 		boolean mesSiguientePosterior = false;
 		
-		if (reserva.getPermanencia().getDia().getMonth().compareTo(LocalDate.now().getMonth()) > 0)
-			mesSiguientePosterior = true;
+		if (reserva.getPermanencia().getDia().getYear() == LocalDate.now().getYear())
+			if (reserva.getPermanencia().getDia().getMonth().compareTo(LocalDate.now().getMonth()) > 0)
+				mesSiguientePosterior = true;
 		
 		return mesSiguientePosterior;
 			
