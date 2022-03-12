@@ -47,12 +47,9 @@ public class Aula {
 		palabrasList = Arrays.asList(palabrasString);
 		
 		for(String i: palabrasList){
-			System.out.println(i);
 			i = i.toUpperCase().charAt(0) + i.substring(1).toLowerCase();
 			
 			nombreNuevo = nombreNuevo + i + " ";
-			
-			System.out.println(i);
 		}
 		
 		this.nombre = nombreNuevo.trim();
