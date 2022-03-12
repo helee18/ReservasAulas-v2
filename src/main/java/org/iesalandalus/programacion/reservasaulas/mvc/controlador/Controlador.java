@@ -17,12 +17,14 @@ public class Controlador implements IControlador {
 	private IVista vista;
 
 	public Controlador(IModelo modelo, IVista vista) {
-		try{
-			this.modelo = modelo;
-			this.vista = vista;
-		} catch (NullPointerException e) {
-			System.out.println("ERROR: La vista o el controlador no pueden ser nulos.");
-		}
+		if (modelo == null)
+			throw new NullPointerException("ERROR: El modelo no pueden ser nulos.)");
+
+		if (vista == null)
+			throw new NullPointerException("ERROR: La vista no pueden ser nulos.)");
+		
+		this.modelo = modelo;
+		this.vista = vista;
 		
 		this.vista.setControlador(this);
 	}

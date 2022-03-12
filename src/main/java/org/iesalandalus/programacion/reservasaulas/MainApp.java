@@ -17,7 +17,11 @@ public class MainApp {
 		vista = new Vista();
 		modelo = new Modelo();
 		
-		new Controlador(modelo, vista);
+		try {
+			new Controlador(modelo, vista);
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
